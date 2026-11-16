@@ -1,0 +1,44 @@
+{
+  "package_name": "zeroprobe",
+  "version": "0.5.6-1",
+  "app_name": "ZeroProbe",
+  "bin_name": "zeroprobe",
+  "description": "Safety-first GPIO, UART, and I2C interface explorer for CardputerZero.",
+  "store": {
+    "summary": "Safety-first GPIO, UART and I²C explorer for CardputerZero.",
+    "description": "Explore GPIO signals, monitor and transmit guarded 3.3 V UART traffic, scan shared I²C safely, export VCD captures, and optionally operate the native interface from a trusted-network web dashboard.",
+    "categories": [
+      "Security",
+      "Hardware & IoT"
+    ],
+    "screenshots": [
+      "screenshots/dashboard.png",
+      "screenshots/uart.png",
+      "screenshots/i2c.png",
+      "screenshots/web-settings.png"
+    ],
+    "icon": "store/zeroprobe-256.png",
+    "license": "MIT",
+    "source_repo": "https://git.gainpalfam.com/cardputorzero/ZeroProbe-Pub",
+    "author": {
+      "github": "GainSec",
+      "display_name": "GainSec"
+    },
+    "share_code": "ZPRB",
+    "permissions": {
+      "camera": false,
+      "microphone": false,
+      "imu": false,
+      "network": true,
+      "additional_hardware": true,
+      "background_service": false,
+      "external_display": false
+    },
+    "locales": {
+      "en": {
+        "title": "ZeroProbe",
+        "summary": "Safety-first GPIO, UART and I²C explorer for CardputerZero."
+      }
+    }
+  }
+}

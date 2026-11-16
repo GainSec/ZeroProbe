@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zeroprobe"
+version = "0.5.6"
+description = "Safe interface explorer for M5Stack CardputerZero"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "GainSec"}]
+dependencies = ["pygame>=2.1"]
+
+[project.scripts]
+zeroprobe = "zeroprobe.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

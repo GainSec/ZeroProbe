@@ -1,0 +1,30 @@
+FROM debian:bookworm-slim
+COPY dist/zeroprobe_0.5.6-1_arm64.deb /tmp/zeroprobe.deb
+RUN apt-get update -qq \
+ && apt-get install -y -qq /tmp/zeroprobe.deb \
+ && rm -rf /var/lib/apt/lists/* /tmp/zeroprobe.deb
+RUN zeroprobe capture --backend sim --pins 22 --duration-ms 10 --output /tmp/capture.vcd \
+ && test -s /tmp/capture.vcd \
+ && grep -q GPIO22 /tmp/capture.vcd
+RUN zeroprobe uart --simulate --baud 115200 --duration-ms 10 --output /tmp/uart.txt \
+ && grep -q 'ZeroProbe UART RX ready' /tmp/uart.txt \
+ && grep -q 'framing_errors=0' /tmp/uart.txt
+RUN zeroprobe uart --simulate --baud 115200 --send-text ATI --append crlf \
+      --duration-ms 10 --output /tmp/uart-tx.txt \
+ && grep -q 'tx_bytes=5' /tmp/uart-tx.txt \
+ && grep -q 'tx_hex: 41 54 49 0d 0a' /tmp/uart-tx.txt \
+ && grep -q 'SIM RX' /tmp/uart-tx.txt
+RUN zeroprobe i2c --simulate --output /tmp/i2c.txt \
+ && grep -q 'addresses: 0x3c 0x48' /tmp/i2c.txt \
+ && grep -q 'internal_skipped=6' /tmp/i2c.txt
+RUN SDL_VIDEODRIVER=dummy /usr/share/ZeroProbe/bin/zeroprobe --backend sim --screenshot /tmp/gui.png \
+ && python3 - <<'PY'
+import struct
+with open('/tmp/gui.png','rb') as f:
+    assert f.read(8) == b'\x89PNG\r\n\x1a\n'
+    f.read(8)
+    size = struct.unpack('>II', f.read(8))
+assert size == (320, 170), size
+print('SMOKE_OK', size)
+PY
+CMD ["zeroprobe", "--help"]
