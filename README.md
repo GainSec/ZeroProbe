@@ -6,7 +6,7 @@
 
 - **Current version:** 0.5.6
 - **Platform:** M5Stack CardputerZero / ARM64 Debian
-- **Public repository:** <https://git.gainpalfam.com/cardputorzero/ZeroProbe-Pub>
+- **Public repository:** <https://github.com/GainSec/ZeroProbe>
 - **Installable package:** [`dist/zeroprobe_0.5.6-1_arm64.deb`](dist/zeroprobe_0.5.6-1_arm64.deb)
 
 ## Description

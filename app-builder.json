@@ -19,7 +19,7 @@
     ],
     "icon": "store/zeroprobe-256.png",
     "license": "MIT",
-    "source_repo": "https://git.gainpalfam.com/cardputorzero/ZeroProbe-Pub",
+    "source_repo": "https://github.com/GainSec/ZeroProbe",
     "author": {
       "github": "GainSec",
       "display_name": "GainSec"
